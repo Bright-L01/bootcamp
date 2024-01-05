@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Router } from 'react-router-dom';
 
 class CardViewer extends React.Component {
     constructor(props) {
@@ -19,42 +18,21 @@ class CardViewer extends React.Component {
             <h2>
                 {card}
             </h2> 
-        </table>
+        </table>      
         <button onClick={() => this.setState(prevState => ({ isFront: !prevState.isFront }))}>
             flip
         </button>
         <button onClick={() => this.setState(prevState => ({ currIndex: Math.max(prevState.currIndex - 1, 0) , isFront : true}))}>
          Previous
-        </button>
+        </button>               
         <button onClick={() => this.setState(prevState => ({ currIndex: Math.min(this.props.cards.length - 1, prevState.currIndex + 1),  isFront : true }))}>
          next
         </button>
+        <button onClick={this.props.switchMode}>Go to card editor</button>
         <h2>{this.state.currIndex+1} / {this.props.cards.length} </h2>
-
-        <Link to="/editor">Go to card viewer</Link>
       </div>
     );
   }
 }
 
-export default CardViewer;/* 
-access properties of the props
-card.front for whatever index we are on
-change what we see on the page<td>{false ? card.front : card.back}</td>
-isFront = true, on start be true<button onClick={() => this.deleteCard(index)}>
-
-key is the index of the card we want to change
-<tr key={index}>
-     {<td>{card.front}</td>}
-     <td>{card.back}</td>
-     <td>
-
-     </td>
-   </tr>
-
-
-Previous/Next:
-handleChange = event =>
-<button onClick={() => index - 1}>previous</button>
-<button onClick={() => index + 1}>Next</button>
-*/
+export default CardViewer;
